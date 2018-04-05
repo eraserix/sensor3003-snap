@@ -1,0 +1,20 @@
+name: eraserix-3003-sensors
+version: '0.1'
+summary: Read and print some of the Dells 3003 sensors
+description: |
+  This snap reads some of the sensors of Dells IoT 3003 Gateway and
+  prints them to a static website on port 9999.
+
+grade: stable
+confinement: strict
+
+parts:
+  server:
+    source: .
+    plugin: go
+
+apps:
+  sensors3003:
+    command: sensor3003-snap
+    daemon: simple
+    plugs: [network-bind, iio]
